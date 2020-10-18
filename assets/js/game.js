@@ -4,8 +4,17 @@ var randomNumber = function(min, max) {
     return value;
 }
 
+var getPlayerName = function() {
+    var name = "";
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?")
+    }
+    console.log("Your robot's name is" + name);
+    return name;
+}
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -50,7 +59,7 @@ var fight = function(enemy) {
             var confirmSkip = window.confirm("Are you sure you'd like to quit?");
             //if yes (true), leave fight
             if (confirmSkip) {
-                window.alert(playerInfo.name) + " has chosen to skip the fight. Goodbye!");
+                window.alert(playerInfo.name + " has chosen to skip the fight. Goodbye!");
                 //subtract money from playerInfo.money for skipping
                 playerInfo.money = playerInfo.money - 10;
                 console.log("playerInfo.money", playerInfo.money);
@@ -95,11 +104,11 @@ var fight = function(enemy) {
 //Start Game function
 var startGame = function () {
     playerInfo.reset();
-   //debugger;
     for (var i = 0; i < enemyInfo.length; i++) {
         if (playerInfo.health > 0) {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
-            var pickedEnemyObj = enemy.name[i];
+            debugger;
+            var pickedEnemyObj = enemyInfo.name[i];
             pickedEnemyObj.health = randomNumber(40, 60);
             fight (pickedEnemyObj);
 
