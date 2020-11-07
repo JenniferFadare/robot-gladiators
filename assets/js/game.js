@@ -8,6 +8,11 @@ var enemyNames = ["Roberto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 10;
 
+var randomNumber = function() {
+    var value = Math.floor(Math.random * 21) + 40;
+    return value;
+}
+
 var fight = function(enemyName) {
     while (playerHealth > 0 && enemyHealth > 0) {
         
@@ -28,7 +33,7 @@ var fight = function(enemyName) {
         }
 
             //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-             enemyHealth = Math.max(0, enemyHealth - playerAttack);
+             enemyHealth = randomNumber();
              // Log a resulting message to the console so we know that it worked.
              console.log( playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
        
