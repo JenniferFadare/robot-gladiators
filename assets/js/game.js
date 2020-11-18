@@ -92,7 +92,7 @@ var startGame = function () {
         }
         endGame();
     }
-    //startGame()
+    startGame()
 }
 
 var endGame = function () {
