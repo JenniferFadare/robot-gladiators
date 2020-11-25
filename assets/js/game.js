@@ -25,12 +25,26 @@ var playerInfo = {
     },
 
     refillHealth: function() {
-        this.health += 20;
-        this.money -= 7;
+        if (this.money >= 7) {
+            window.alert("Refilling player's health by 20 for 7 dollars.");
+            this.health += 20;
+            this.money -= 7;
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }
+ 
     },
     upgradeAttack: function() {
-        this.attack += 6;
-        this.money -= 7;
+        if (this.money >= 7) {
+            window.alert("Upgrading player's attack by 6 for 7 dollars!");
+            this.attack += 6;
+            this.money -= 7;
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }
+        
     }
 };
 
@@ -69,6 +83,7 @@ var fightOrSkip = function () {
 }
 
 var fight = function(enemy) {
+    console.log(enemy);
     var isPlayerTurn = true;
     if (Math.random() > .5) {
         isPlayerTurn = false;
@@ -120,7 +135,7 @@ var startGame = function () {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
             debugger;
             console.log(i);
-            var pickedEnemyObj = enemyInfo.name[i];
+            var pickedEnemyObj = enemyInfo[i];
             console.log(pickedEnemyObj);
             pickedEnemyObj.health = randomNumber(40, 60);
             fight (pickedEnemyObj);
@@ -164,28 +179,12 @@ var shop = function () {
     parseInt (shopOptionPrompt);
     switch (shopOptionPrompt) {
         case 1:
-            if (playerInfo.money >= 7){
-                window.alert("Refilling player's health by 20 for 7 dollars.");
                 playerInfo.refillHealth();
-                break;
-                }
-             else {
-            window.alert("you don't have enough money!");
-            }
-        break;
-        
+                break; 
         case 2:
-            if (playerInfo.money >= 7){
-                window.alert("Upgrading player's attack by 6 for 7 dollars.");
                 playerInfo.upgradeAttack();
                 break;
-            }
-            else{
-                window.alert("you don't have enough money!"); 
-            }
-         break;
-
-        case 3:
+         case 3:
             window.alert("Leaving the store.");
         break;
 
