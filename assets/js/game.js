@@ -185,7 +185,7 @@ var shop = function () {
                 playerInfo.upgradeAttack();
                 break;
          case 3:
-            window.alert("Leaving the store.");
+                window.alert("Leaving the store.");
         break;
 
         default: 
