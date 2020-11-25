@@ -66,18 +66,21 @@ var enemyInfo = [
 var fightOrSkip = function () {
     var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
     promptFight = promptFight.toLowerCase();
+
+    if (!promptFight) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+
     if (promptFight === "skip") {
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
         if (confirmSkip) {
             window.alert(playerInfo.name + "has decided to skip this fight. Goodbye!");
-            playerInfo.money = playerInfo.money - 10;
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
             return true;
         }
-        else if (promptFight === "" || promptFight === null) {
-            window.alert("You need to provide a valid answer! Please try again.");
-            return fightOrSkip();
-        }
-        else return false;
+        else { 
+            return false;
     }
         
 }
@@ -89,10 +92,10 @@ var fight = function(enemy) {
         isPlayerTurn = false;
     }
     while (playerInfo.health > 0 && enemy.health > 0) {
-            fightOrSkip();
-            if (fightOrSkip()) {
-                break;
-            }
+           if (fightOrSkip()) {
+               break;
+           }
+            
             //Subtract the value of `playerInfo.attack` from the value of `enemy.health` and use that result to update the value in the `enemy.health` variable
              var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
              enemy.health = Math.max(0, enemy.health - damage);
@@ -125,6 +128,7 @@ var fight = function(enemy) {
                 window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
             }
     }
+    shop();
 }
 
 //Start Game function
